@@ -20,6 +20,12 @@ class stream:
         self.try_next()
         return result
 
+def isdigit(ch):
+    return '0' <= ch and ch <= '9'
+
+def isletter(ch):
+    return ('a' <= ch and ch <= 'z') or ('A' <= ch and ch <= 'Z') 
+
 def get_string(quote_type, data_stream):
     result = ""
     while data_stream.next != quote_type:
@@ -51,7 +57,7 @@ def lex(source_code):
             yield ("operation", ch)
         elif ch in "'\"":
             yield ("string", get_string(ch, strm))
-        elif re.match("[.0-9]", ch):
+        elif isdigit(ch):
             yield ("number", get_sequen(ch, strm, "[.0-9]"))
         elif re.match("[_a-zA-Z]", ch):
             yield ("identifier", get_sequen(ch, strm, "[_a-zA-Z0-9]"))
