@@ -40,8 +40,12 @@ def get_sequen(seq_beg, data_stream, seq_allowed):
     result = seq_beg
     nxt = data_stream.next
     while nxt is not None and re.match(seq_allowed, nxt):
-        print("Here's the next part:"+data_stream.next)
-        result += data_stream.try_next()
+        result += data_stream.cut_next()
+        # result += data_stream.try_next() 
+        # the above lien was causing an error, you thought that the implementation
+        # of 'try_next' was to blame, except it wasn't for 'try_next' shouldn't 
+        # return anything. Once you called the proper function, 'cut_next' 
+        # it worked properly
         nxt = data_stream.next 
     return result
 
@@ -65,10 +69,12 @@ def lex(source_code):
             raise Exception("TAB is an illegal character inside Cell")
         else:
             raise Exception("Unidentified char detected")
+    else:
+        yield ("eos", "")
 
     #if __name__ == "main":
-src = "x=1;\ny=x+2;\nprint(y);"
-src = "x=1;\ny=x+2;"
+src = "x=10;\ny=x+101;\nprint(y);"
+# src = "x=1;\ny=x+2;"
 # for i in range(3):
 #     print(tuple(lex(src)))
 print(tuple(lex(src)))
