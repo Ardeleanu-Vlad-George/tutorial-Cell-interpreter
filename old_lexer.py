@@ -1,6 +1,9 @@
+#!/usr/bin/python3
+import re
+
 # the 'stream' class that will be used for progressing through the 
 # 'source' data, the data that represents the text of the source file
-import re
+
 # A class serving a similar purpose to the 'std::stringstream' of C++
 class stream:
     def __init__(self, source):
@@ -20,11 +23,9 @@ class stream:
         self.try_next()
         return result
 
-def isdigit(ch):
-    return '0' <= ch and ch <= '9'
+isdigit = lambda ch: '0' <= ch and ch <= '9'
 
-def isletter(ch):
-    return ('a' <= ch and ch <= 'z') or ('A' <= ch and ch <= 'Z') 
+isletter= lambda ch: ('a' <= ch and ch <= 'z') or ('A' <= ch and ch <= 'Z') 
 
 def get_string(quote_type, data_stream):
     result = ""
@@ -58,13 +59,13 @@ def lex(source_code):
         elif ch in "(){},;:=": # Special tokens
             yield (ch, "")
         elif ch in "+*-/":
-            yield ("operation", ch)
+            yield ("op", ch)
         elif ch in "'\"":
-            yield ("string", get_string(ch, strm))
+            yield ("sr", get_string(ch, strm))
         elif isdigit(ch):
-            yield ("number", get_sequen(ch, strm, "[.0-9]"))
+            yield ("nr", get_sequen(ch, strm, "[.0-9]"))
         elif re.match("[_a-zA-Z]", ch):
-            yield ("identifier", get_sequen(ch, strm, "[_a-zA-Z0-9]"))
+            yield ("id", get_sequen(ch, strm, "[_a-zA-Z0-9]"))
         elif ch == "\t":
             raise Exception("TAB is an illegal character inside Cell")
         else:
@@ -73,8 +74,6 @@ def lex(source_code):
         yield ("eos", "")
 
     #if __name__ == "main":
-src = "x=10;\ny=x+101;\nprint(y);"
-# src = "x=1;\ny=x+2;"
-# for i in range(3):
-#     print(tuple(lex(src)))
-print(tuple(lex(src)))
+if __name__ == "__main__":
+    source = "x=10;\ny=x+101;\nprint(\"This is the result:\" + y);"
+    print(tuple(lex(source)))
