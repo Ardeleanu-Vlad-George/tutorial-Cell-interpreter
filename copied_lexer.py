@@ -21,4 +21,4 @@ def _scan(first_char, chars, allowed):
   return ret
 
 
-strm = PeekableStream("x=1\ny=3+x\nprint(y)\n")
+strm = PeekableStream("x=1;\ny=3+x;\nprint(y);\n")

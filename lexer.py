@@ -2,7 +2,7 @@
 # 'source' data, the data that represents the text of the source file
 import re
 # A class serving a similar purpose to the 'std::stringstream' of C++
-class str_eam:
+class stream:
     def __init__(self, source):
         self.iterator = iter(source)
         self.try_next()
@@ -34,6 +34,7 @@ def get_sequen(seq_beg, data_stream, seq_allowed):
     result = seq_beg
     nxt = data_stream.next
     while nxt is not None and re.match(seq_allowed, nxt):
+        print("Here's the next part:"+data_stream.next)
         result += data_stream.try_next()
         nxt = data_stream.next 
     return result
@@ -61,6 +62,7 @@ def lex(source_code):
 
     #if __name__ == "main":
 src = "x=1;\ny=x+2;\nprint(y);"
+src = "x=1;\ny=x+2;"
 # for i in range(3):
 #     print(tuple(lex(src)))
 print(tuple(lex(src)))
