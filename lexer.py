@@ -50,10 +50,8 @@ def lex(source):
             raise Exception("TAB is an illegal character inside Cell")
         else:
             raise Exception("Unidentified char detected")
-    else:
-        yield ("eos", "")
 
-    #if __name__ == "main":
+
 if __name__ == "__main__":
     src = "x=10;\ny=x+101;\nprint(\"This is the result:\" + y);"
     dt = iter(lex(src))
