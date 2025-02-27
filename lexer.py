@@ -56,4 +56,7 @@ def lex(source):
     #if __name__ == "main":
 if __name__ == "__main__":
     src = "x=10;\ny=x+101;\nprint(\"This is the result:\" + y);"
+    dt = iter(lex(src))
+    print(dt.__next__())
+    print(dt.__next__())
     print(tuple(lex(src)))
