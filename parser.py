@@ -30,6 +30,15 @@ def expr_chain(toks, sep_tok, end_tok):
             toks.pop_next()
     return chain
 
+def parameter_list(toks):
+    if toks.next[0] != ':':
+        return []
+    toks.pop_next()
+    if toks.next[0] == '(':
+        toks.pop_next()
+        return expr_chain(toks, ',', ')')
+    pass
+
 # 'expr' stands for expression
 def next_expr(toks, end_tok, prv_expr):
     """
@@ -57,7 +66,7 @@ def next_expr(toks, end_tok, prv_expr):
         args = expr_chain(toks, ',', ')')
         return next_expr(toks, end_tok, ('call', prv_expr, args))
     elif typ == '{':
-        params = parameter_list(toks, )
+        params = parameter_list(toks)
         body = expr_chain(toks, ';', '}')
         return next_expr(toks, end_tok, ('func', params, body))
     elif typ == '=':
@@ -66,8 +75,12 @@ def next_expr(toks, end_tok, prv_expr):
 
 
 
-def parse():
-    pass
+def parse(toks):
+    while toks.next is not None:
+        part = next_expr(toks, ';', None)
+        if part is not None:
+            yield part
+        toks.pop_next()
 
 
 if __name__ == "__main__":
@@ -80,9 +93,11 @@ if __name__ == "__main__":
         ('id', 'print'), ('(', ''), ('sr', 'This is the result:'), ('op', '+'), ('id', 'y'), (')', ''), (';', '')
     )
 
-    print(avg_tok)
-
     # here is a list of tokens that only do a simple assignment
     ezy_tok = (
         ('id', 'x'), ('=', ''), ('nr', '-2.4'), (';', '')
     )
+    # print("AST of %s" % (ezy_tok,), tuple(parse(nps(ezy_tok))), sep='\n', end='')
+    print(tuple(parse(nps(avg_tok))))
+
+(('id', 'x'), ('=', ''), ('nr', '10'), (';', ''), ('id', 'y'), ('=', ''), ('id', 'x'), ('op', '+'), ('nr', '101'), (';', ''), ('id', 'MSG'), ('=', ''), ('sr', 'This is the result:'), (';', ''), ('id', 'print'), ('(', ''), ('id', 'MSG'), (',', ''), ('id', 'y'), (')', ''), (';', ''))
