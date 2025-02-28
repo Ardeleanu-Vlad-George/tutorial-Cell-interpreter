@@ -6,11 +6,29 @@ from lexer import lex as lx
 # To me it seems silly to introduce a class for this part of the design
 # The first one sort of made sense to me, but this one didn't 
 # If there is no class called 'lexer', why should there be one called 'parser'
-# For simetries sake, the 'parser' file will NOT contain a 'parser' class
+# For simmetry's sake, the 'parser' file will NOT contain a 'parser' class
 # Just the 'parse' method
 
-def many_expr():
-    pass
+def expr_chain(toks, sep_tok, end_tok):
+    """
+        'toks' - the tokens that will be processed, an object of type 'nps'
+        'sep_tok' - the ending tokens, in 'Cell' these can be ';', ')', '}'
+                    they are the tokens that signal the end of an expression
+        'end_tok' - the token that signals the end of the current expr of the expression currently being build
+    """
+    chain = []
+    typ = toks.next[0]
+    if typ == end_tok:
+        toks.pop_next()
+        return []
+    else:
+        while typ != end_tok:
+            part = next_expr(toks, (sep_tok, end_tok), None)
+            if part is not None:
+                chain.append(part)
+            typ = toks.next[0]
+            toks.pop_next()
+    return chain
 
 # 'expr' stands for expression
 def next_expr(toks, end_tok, prv_expr):
@@ -36,11 +54,11 @@ def next_expr(toks, end_tok, prv_expr):
         nxt = next_expr(toks, end_tok, None) # yes, start the previus from 'None'
         return next_expr(toks, end_tok, ('comp', val, prv_expr, nxt))
     elif typ == '(':
-        args = many_expr(toks, ',', ')')
+        args = expr_chain(toks, ',', ')')
         return next_expr(toks, end_tok, ('call', prv_expr, args))
     elif typ == '{':
         params = parameter_list(toks, )
-        body = many_expr(toks, ';', '}')
+        body = expr_chain(toks, ';', '}')
         return next_expr(toks, end_tok, ('func', params, body))
     elif typ == '=':
         nxt = next_expr(toks, end_tok, None)
