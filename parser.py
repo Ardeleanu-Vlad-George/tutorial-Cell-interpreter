@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from no_put_stack import no_put_stack as nps
+from lib.no_put_stack import no_put_stack as nps
 from lexer import lex as lx
 
 # Deleted class 'Parser'
