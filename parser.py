@@ -1,14 +1,26 @@
 #!/usr/bin/python3
-# this is the list of tokens we expect from the lexer, ordered based on the line of code
-# to which they belong
-avg_tok = (
-    ('id', 'x'), ('=', ''), ('nr', '10'), (';', ''),
-    ('id', 'y'), ('=', ''), ('id', 'x'), ('op', '+'), ('nr', '101'), (';', ''),
-    ('id', 'print'), ('(', ''), ('sr', 'This is the result:'), ('op', '+'), ('id', 'y'), (')', ''), (';', '')
-)
+from no_put_stack import no_put_stack as nps
 
-# here is a list of tokens that only do a simple assignment
-ezy_tok = (
-    ('id', 'x'), ('=', ''), ('nr', '-2.4'), (';', '')
-)
+class parser():
+    pass
 
+def parse():
+    pass
+
+
+if __name__ == "__main__":
+
+    # this is the list of tokens we expect from the lexer, ordered based on the line of code
+    # to which they belong
+    avg_tok = (
+        ('id', 'x'), ('=', ''), ('nr', '10'), (';', ''),
+        ('id', 'y'), ('=', ''), ('id', 'x'), ('op', '+'), ('nr', '101'), (';', ''),
+        ('id', 'print'), ('(', ''), ('sr', 'This is the result:'), ('op', '+'), ('id', 'y'), (')', ''), (';', '')
+    )
+
+    print(avg_tok)
+
+    # here is a list of tokens that only do a simple assignment
+    ezy_tok = (
+        ('id', 'x'), ('=', ''), ('nr', '-2.4'), (';', '')
+    )
