@@ -21,6 +21,8 @@ if __name__ == '__main__':
         ('call', 
             ('id', 'print'), 
             [('comp', '+', ('sr', 'This is the result:'), ('id', 'y'))]))
+    for node in ast:
+        print(node)
     # print(str_toks)
     # cmd.Cmd.columnize(list(str_toks))
     c = cmd.Cmd()
