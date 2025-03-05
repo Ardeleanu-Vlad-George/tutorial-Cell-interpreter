@@ -4,7 +4,7 @@ from env import env as E
 def eval_ast(ast, env):
     ret = ("none",)
     for expr in ast:
-        ret = expr
+        ret = eval_exp(expr, env)
     return ret
 
 def eval_exp(exp,env):
@@ -25,6 +25,7 @@ def eval_exp(exp,env):
         env.items[var_name] = val
         return val
     elif act == 'call':
+        print('Does this execute?')
         return call(exp, env)
     # to complete with the part where you define a function
 
@@ -33,7 +34,8 @@ def call(exp, env):
     fn_name = exp[1]
     fn_args = list(eval_exp(_, env) for _ in exp[2])
     # keep it simple
-    print(fn_name, fn_args)
+    print('This is the printer:', fn_name, fn_args)
+    return None
 
 def comp(exp, env):
     p1 = eval_exp(exp[2], env)

@@ -12,4 +12,4 @@ with open(sys.argv[1], 'r') as source:
 
 # print(code, end='')
 envt = evaluator.E(stdin = sys.stdin, stdout = sys.stdout, stderr = sys.stderr)
-evaluator.eval_ast( parser.parse(parser.nps(lexer.lex(code))), envt)
+print('No, I am the printer:', evaluator.eval_ast( parser.parse(parser.nps(lexer.lex(code))), envt))
