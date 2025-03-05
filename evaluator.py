@@ -14,6 +14,8 @@ def eval_exp(exp,env):
     elif act == 'sr':
         return ('sr', exp[1])
     elif act == 'comp':
+        ret = comp(exp, env)
+        print('From comp:', ret)
         return comp(exp, env)
     elif act == 'id':
         name = exp[1]
@@ -22,6 +24,7 @@ def eval_exp(exp,env):
     elif act == 'asgn':
         var_name = exp[1][1]
         val = eval_exp(exp[2], env)
+        print('From "asgn":', val)
         env.items[var_name] = val
         return val
     elif act == 'call':
@@ -41,11 +44,11 @@ def comp(exp, env):
     p1 = eval_exp(exp[2], env)
     p2 = eval_exp(exp[3], env)
     if exp[1] == '+':
-        return ('nr', p1+p2)
+        return ('nr', p1[1]+p2[1])
     elif exp[1] == '/':
-        return ('nr', p1/p2)
+        return ('nr', p1[1]/p2[1])
     elif exp[1] == '*':
-        return ('nr', p1*p2)
+        return ('nr', p1[1]*p2[1])
     elif exp[1] == '-':
-        return ('nr', p1-p2)
+        return ('nr', p1[1]-p2[1])
 
