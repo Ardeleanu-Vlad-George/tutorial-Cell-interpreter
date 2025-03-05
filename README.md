@@ -20,3 +20,10 @@ From "asgn": ('sr', 'This is the value:')
 Does this execute?
 This is the printer: ('id', 'print') [('sr', 'This is the value:'), ('nr', ('nr', 101.0, 'nr', 10.0))]
 No, I am the printer: None
+From "asgn": ('nr', 10.0)
+From comp: ('nr', 111.0)
+From "asgn": ('nr', 111.0)
+From "asgn": ('sr', 'This is the value:')
+Does this execute?
+This is the printer: ('id', 'print') [('sr', 'This is the value:'), ('nr', 111.0)]
+No, I am the printer: None
