@@ -24,7 +24,7 @@ def eval_exp(exp,env):
         val = eval_exp(exp[2], env)
         env.items[var_name] = val
         return val
-    elif act == 'call'
+    elif act == 'call':
         return call(exp, env)
     # to complete with the part where you define a function
 

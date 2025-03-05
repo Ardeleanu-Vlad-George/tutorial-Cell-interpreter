@@ -25,7 +25,7 @@ class env:
     # this function can really be usefull, it replaces some repetitive and 
     # verbose code
     def search(self, name):
-        if name self.items:
+        if name in self.items:
             return self.items[name]
         elif self.parent is not None:
             return self.parent.search(name)
