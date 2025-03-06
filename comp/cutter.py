@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def eval_ast(ast, env):
+def cut(ast, env):
     ret = ("none",)
     for expr in ast:
         ret = eval_exp(expr, env)
