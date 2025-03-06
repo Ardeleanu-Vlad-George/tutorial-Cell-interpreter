@@ -14,7 +14,6 @@ def eval_exp(exp,env):
         return ('sr', exp[1])
     elif act == 'comp':
         ret = comp(exp, env)
-        print('From comp:', ret)
         return comp(exp, env)
     elif act == 'id':
         name = exp[1]
@@ -23,11 +22,9 @@ def eval_exp(exp,env):
     elif act == 'asgn':
         var_name = exp[1][1]
         val = eval_exp(exp[2], env)
-        print('From "asgn":', val)
         env.items[var_name] = val
         return val
     elif act == 'call':
-        print('Does this execute?')
         return call(exp, env)
     # to complete with the part where you define a function
 
@@ -36,7 +33,7 @@ def call(exp, env):
     fn_name = exp[1]
     fn_args = list(eval_exp(_, env) for _ in exp[2])
     # keep it simple
-    print('This is the printer:', fn_name, fn_args)
+    print(fn_name, fn_args)
     return None
 
 def comp(exp, env):

@@ -15,4 +15,4 @@ with open(sys.argv[1], 'r') as source:
 
 # print(code, end='')
 envt = comp.scope.scope(stdin = sys.stdin, stdout = sys.stdout, stderr = sys.stderr)
-print('No, I am the printer:', comp.evaluator.eval_ast( comp.parser.parse(comp.parser.nps(comp.lexer.lex(code))), envt))
+comp.evaluator.eval_ast( comp.parser.parse(comp.parser.nps(comp.lexer.lex(code))), envt)
