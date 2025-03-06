@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import re
-from lib.no_put_stack import no_put_stack as nps
+from comp.help.no_put_stack import no_put_stack as nps
 
 def get_string(quote_type, char_stack):
     result = ""

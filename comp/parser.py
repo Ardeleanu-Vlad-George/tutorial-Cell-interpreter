@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-from lib.no_put_stack import no_put_stack as nps
-from lexer import lex as lx
+from comp.help.no_put_stack import no_put_stack as nps
+# import help.no_put_stack.no_put_stack as nps
+# from help.no_put_stack import no_put_stack as nps
+from comp.lexer import lex as lx
 
 # Deleted class 'Parser'
 # To me it seems silly to introduce a class for this part of the design

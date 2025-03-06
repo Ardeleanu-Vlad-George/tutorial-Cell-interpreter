@@ -4,7 +4,7 @@
 # Also it uses the parent 'member', so it really is more than just the consecutive 
 # function calls
 
-class env:
+class scope:
     def __init__(self, parent=None, stdin=None, stdout=None, stderr=None):
 
         self.stdin = stdin
